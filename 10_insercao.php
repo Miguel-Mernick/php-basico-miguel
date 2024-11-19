@@ -18,6 +18,19 @@
     </form>
 
     <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Recebe os valores enviados pelo formulário
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        // Valida se os campos não estão vazios e o email é válido
+
+        if (!empty($nome) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "";
+        } else {
+            echo "<p style='color: red; '>Por favor, preencha todos os campos corretamente.</p>";
+        }
+}
+if (!empty($nome) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
     // Verifica se o formulário foi enviado
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Recebe os valores enviados pelo formulário
@@ -60,6 +73,7 @@
         $conn->close();
 
     }
+}
     ?>
 </body>
 </html>
